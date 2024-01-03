@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      body{margin : 0;}
+      div{
+         font-weight: bold;
+         border: 1px solid red;
+         /*부모를 기준으로 %*/
+         width: 20%;
+         text-align: center;
+         padding: 20px;
+      }
+      #c{
+         box-sizing: content-box;
+      }
+      #d{
+         box-sizing: border-box;
+      }
+   </style>
+</head>
+<body>
+   <div id="c">박스 1</div>
+   <div>박스 2</div>
+   <div id="d">박스 3</div>
+</body>
+</html>
