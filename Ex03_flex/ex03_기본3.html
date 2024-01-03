@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .parent{
+         border:5px solid green;
+         height: 500px;
+         display: flex;
+         align-items: flex-start;
+      }
+      .parent div{
+         background: yellowgreen;
+         font-size: 2em;
+         color: green;
+         margin : 0 10px;
+         width: 100px;
+         text-align: center;
+      }
+      .child1{
+         height: 100px;
+         flex-basis: 100px;
+      }
+      .child2{
+         height: 350px;
+         flex-basis: 200px;
+      }
+      .child3{
+         height: 250px;
+         flex-basis: 300px;
+      }
+   </style>
+</head>
+<body>
+   <div class="parent">
+      <div class="child1">1</div>
+      <div class="child2">2</div>
+      <div class="child3">3</div>
+   </div>
+</body>
+</html>
