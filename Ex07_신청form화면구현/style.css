@@ -1,0 +1,87 @@
+*{margin:0; padding: 0; box-sizing: border-box;}
+section{
+   width: 1280px;
+   margin:0 auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.red{
+   color:red;
+}
+h1{
+   font-weight: normal;
+   text-align: center;
+   margin-top: 30px;
+}
+h1::after{
+   content: "";
+   display: block;
+   width: 70px;
+   height: 2px;
+   background: skyblue;
+   margin : 20px auto;
+}
+p{
+   width: 100%;
+   text-align: center;
+   font-size: 12px;
+   border-bottom: 3px solid lightgray;
+   padding-bottom: 20px;
+   margin-bottom: 30px;
+}
+.inputBox{
+   width: 90%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+.name{
+   width: 50%;
+}
+label{
+   display: block;
+   margin-bottom: 5px;
+}
+input, select, textarea{
+   border: 1px solid lightgrey;
+   width: 100%;
+   padding: 7px;
+   margin-bottom: 10px;
+   outline-color: rgba(135, 207, 235, 0.5);  
+}
+.name, .email, .number, .choice{
+   width: 47%;
+}
+.content, .check{
+   width: 100%;
+}
+iframe{
+   display: block;
+   width: 100%;
+   border: 1px solid lightgrey;
+   margin: 10px 0;
+   padding:7px;
+}
+.check input{
+   width: auto;
+}
+.check label{
+   display: inline-block;
+}
+.submit{
+   width: auto;
+   padding:10px 50px;
+   margin:20px auto;
+   border: none;
+   background: skyblue;
+   cursor: pointer;
+}
+.submit:hover{
+   background: rgb(101, 175, 204);
+}
+
+@media screen and (max-width: 1280px){
+   section{width: 100%;}
+   .name, .email, .number, .choice{width: 100%;}
+}
