@@ -73,6 +73,10 @@ header{
    padding-left: 0;
 }
 
+.search input:focus::placeholder{
+   visibility: hidden;
+}
+
 header button{
    height: 50px;
    padding:5px 50px;
