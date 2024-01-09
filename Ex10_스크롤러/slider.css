@@ -1,0 +1,23 @@
+body{background: lightgreen;}
+.myslider{
+   width: 600px;
+   margin:auto;
+   background: white;
+   font-size: 25px;
+}
+.myslider div{
+   border: 1px solid black;
+   height: 200px;
+   text-align: center;
+   line-height: 200px;
+}
+.myslider .slick-dots{
+   bottom: 10px;
+}
+
+@media screen and (max-width:768px) {
+   .myslider{
+      width: 90%;
+   }
+   .myslider .slick-arrow{display: none !important;}
+}
