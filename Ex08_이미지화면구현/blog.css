@@ -41,18 +41,29 @@ section>div{
 .image{
    width: 100%;
    height: 50%;
+   overflow: hidden;
+}
+
+.image:hover img{
+   transform: scale(1.1);
 }
 
 .image img{
    width: 100%;
    height: 100%;
+   transition: all .3s;
+   object-fit: cover;
 }
 .content{
    width: 100%;
    height: 50%;
    background: rgb(64, 204, 192);
    color: white;
-   padding:50px;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
    text-align: center;
 }
 
@@ -63,4 +74,21 @@ section>div{
 
 .box2, .box4{
    flex-direction: column-reverse;
+}
+
+@media (min-width:768px) and (max-width: 1024px){
+   section{width: 90%; flex-wrap: wrap;}
+   section>div{width: 100%;height: auto;}
+   .image{width: 50%; height: 100%;}
+   .content{width: 50%; height: 100%;}
+   .box1, .box3{flex-direction:row;}
+   .box2, .box4{flex-direction:row-reverse;}
+}
+
+@media screen and (max-width:767px) {
+   section{width: 90%; flex-wrap: wrap;}
+   section>div{width: 100%; height: auto;}
+   .image{flex:4;}
+   .content{flex:1;}
+   .box2, .box4{flex-direction:column;}
 }
