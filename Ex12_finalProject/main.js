@@ -10,6 +10,10 @@ $(window).scroll(
       
    }
 );
+$('.trigger').click(function(){
+   $(this).toggleClass('on')
+   $('.gnb_nav').toggleClass('on')
+});
 $('.slider').slick({
    infinite: true,
    slidesToShow: 3,
