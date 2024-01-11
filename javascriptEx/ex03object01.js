@@ -23,3 +23,5 @@ anotherDog.ownerAge.name = '존';
 
 console.log(dog);
 console.log(anotherDog);
+
+
