@@ -5,13 +5,17 @@ array[3] = 100;
 console.log(array); // [ <3 empty items>, 100 ] => [undifined, undifined, undifined, 100] empty =undifined
 
 //변수는 자료형이 없기 때문에 다 들어간다.
-array= [1, '2', true, NaN, {}, [100,203,12,1233], [] , 12.123123, undefined, null];
+array= [1, '2', true, NaN, {}, [100,203,12,1233], [] , 12.123123, undefined, null, function test(){console.log('hello')}];
 
 console.log(array);
 
 console.log(array[0]);
 console.log(array[2]);
 console.log(array[3]);
+console.log(array[array.length-1])
+array[array.length-1]();
+//test();
+
 
 for(let i=0; i<array.length; i++){
    console.log(`index${i} = ${array[i]}`);
