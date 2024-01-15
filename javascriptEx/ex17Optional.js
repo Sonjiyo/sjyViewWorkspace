@@ -51,7 +51,7 @@ let item = {
    // } else {
    //   '없는 키값입니다'
    // }
-   return obj ? .key ? obj[key] : '없는 키값입니다';
+  //  return obj ? key ? obj[key] : '없는 키값입니다';
  }
  
  console.log(getValue(cat, 'test'));
@@ -78,13 +78,13 @@ let item = {
  console.log(num || -1); // num false이기 때문에 
  console.log(num && -1);
  console.log('--------');
- console.log(num ? ? -1);
+ console.log(num ?? -1);
  console.log(null || '1');
- console.log(null ? ? '1');
- console.log(undefined ? ? '1');
+ console.log(null ?? '1');
+ console.log(undefined ?? '1');
  
  console.log('' || 1);
- console.log('' ? ? 1);
+ console.log('' ?? 1);
  console.log('--------')
  console.log(NaN || 1);
- console.log(NaN ? ? 1);
+ console.log(NaN ?? 1);

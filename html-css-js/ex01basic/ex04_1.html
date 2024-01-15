@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .box{
+         width: 150px;
+         height: 150px;
+         background: gold;
+      }
+      h1{
+         display: inline-block;
+         padding: 10px;
+         border: 1px solid black;
+      }
+   </style>
+</head>
+<body>
+   <div class="box"></div>
+   <h1>네모 움직여</h1><br>
+   <button class="btn1" onclick="boxSize()">네모 키우기</button>
+   <button class="btn2" onclick="boxMove()">네모 움직이기</button>
+   <button class="btn3" onclick="boxRotate()">네모 회전하기</button>
+</body>
+</html>
+<script>
+   isSizing = true;
+   function boxSize(){
+      if(isSizing){
+         let box = document.querySelector('.box');
+         box.style.transform= 'scale(1.2)';
+         box.style.transition= 'all .3s';
+         isSizing=!isSizing;
+         
+         document.querySelector('.btn1').textContent = '네모 줄이기';
+      } else{
+         let box = document.querySelector('.box');
+         box.style.transform= 'scale(1)';
+         isSizing=!isSizing; 
+         document.querySelector('.btn1').textContent = '네모 줄이기';
+      }
+   }
+   isMoved = true;
+   function boxMove(){
+      if(isMoved){
+         moveBox();
+         isMoved = !isMoved;
+         document.querySelector('.btn2').textContent = '네모 돌려놓기';
+      }else{
+         returnBox();
+         isMoved = !isMoved;
+         document.querySelector('.btn2').textContent = '네모 움직이기';
+      }
+   }
+   function boxRotate(){
+      let box = document.querySelector('.box');
+      box.style.transform= 'rotate(180deg)';
+      box.style.transition= 'all .3s';
+   }
+   function moveBox(){
+      let box = document.querySelector('.box');
+      box.style.transform= 'translateX(300px)';
+      box.style.transition= 'all .3s';
+   }
+   function returnBox(){
+      let box = document.querySelector('.box');
+      box.style.transform= 'translateX(0px)';
+   }
+   document.querySelector('h1').addEventListener("mouseover", () => {
+      moveBox();
+      document.querySelector('h1').textContent = '네모 돌아와';
+   })
+   document.querySelector('h1').addEventListener("mouseout", () => {
+      returnBox();
+      document.querySelector('h1').textContent = '네모 움직여';
+   })
+</script>

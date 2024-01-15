@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+
+   </style>
+</head>
+<body>
+   <div>
+      <input type="checkbox" name="" id="check" style="width: 20px; height: 20px;">
+      <label for="check" style="font-size: 26px;">test</label>
+   </div>
+</body>
+</html>
+<script>
+   const checkbox = document.querySelector('input');
+   checkbox.addEventListener('click', event =>{
+      console.log('클릭했다')
+      event.preventDefault(); //기본이벤트를 막는다
+   })
+
+   //스크롤해주는 이벤트 -> 스크롤 못하게 막고 싶다
+   document.addEventListener('wheel', e=>{
+      e.preventDefault();
+   })
+</script>

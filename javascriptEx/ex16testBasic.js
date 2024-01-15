@@ -31,7 +31,7 @@ function isAllOddNum() {
   for (idx in arr) {
     arr[idx] = getRandNum(-100, 100);
   }
-  arr = [1, -3, -99, 1];
+  // arr = [1, -3, -99, 1];
   console.log(arr);
 
   let cnt = arr.reduce((cnt, value) => {
