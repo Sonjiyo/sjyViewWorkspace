@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .users>div{
+         border: 1px solid black;
+         text-align: center;
+         background: pink;
+         margin:10px;
+      }
+   </style>
+</head>
+<body>
+   <h1>유저 리스트</h1>
+   <div class="users">
+
+   </div>
+</body>
+</html>
+<script>
+   const userList = [
+      {id:1, name:'홍길동', address:'서울'},
+      {id:2, name:'둘리', address:'부산'},
+      {id:3, name:'또치', address:'대전'}
+   ];
+
+   const users = document.querySelector('.users');
+
+   userList.forEach(userData => {
+      users.innerHTML += `<div class="user${userData.id}">
+         <h2>${userData.name}</h2>
+         <p>${userData.address}</p>
+      </div>`;
+   });
+</script>

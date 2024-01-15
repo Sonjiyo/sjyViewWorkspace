@@ -17,12 +17,13 @@
 </html>
 <script>
    const checkbox = document.querySelector('input');
-   checkbox.addEventListener('click', event =>{
+   checkbox.addEventListener('click', e =>{
       console.log('클릭했다')
-      event.preventDefault(); //기본이벤트를 막는다
+      e.preventDefault(); //기본이벤트를 막는다
    })
 
-   //스크롤해주는 이벤트 -> 스크롤 못하게 막고 싶다
+   //스크롤해주는 이벤트 -> 스크롤 못하게 막고 싶다 => 불가능
+   // passive event는 기본 이벤트를 중단하지 못함
    document.addEventListener('wheel', e=>{
       e.preventDefault();
    })

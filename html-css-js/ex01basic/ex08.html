@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      div{
+         margin:20px;
+      }
+      span{
+         width: 150px;
+         display: inline-block;
+         font-size: 30px;
+         text-align: end;
+         padding-right: 20px;
+      }
+      input{
+         padding:10px 30px;
+      }
+      .score{
+         padding:0;
+         margin-right: 20px;
+      }
+      button{padding:10px 30px;margin:10px;}
+   </style>
+</head>
+<body onload = "makeQuiz()">
+   <h1>산수 문제를 풀어봅시다</h1>
+   <h2>수식을 계산하여 답을 입력하고 채점 버튼을 누르세요</h2>
+   <hr>
+      <div>
+         <span class="question"></span>
+         <input type="number" id="answer">
+      </div>
+      <div>
+         <span class="question"></span>
+         <input type="number" id="answer">
+      </div>
+      <div>
+         <span class="question"></span>
+         <input type="number" id="answer">
+      </div>
+      <div>
+         <span class="question"></span>
+         <input type="number" id="answer">
+      </div>
+      <button class="submit" onclick="submit()">채점</button>
+      <span class="score">0점</span>
+      <input type="reset" value="다시" onclick="makeQuiz()">
+</body>
+</html>
+<script>
+   let arr =[0,0,0,0];
+   const answer = document.querySelectorAll('#answer');
+   const quiz = document.querySelectorAll('.question');
+   function makeQuiz(){
+      reset();
+      let index = 0;
+      quiz.forEach(q => {
+         let x = parseInt(Math.random() *20 +1);
+         let y = parseInt(Math.random() *20 +1);
+
+         let mark = parseInt(Math.random()*4);
+         arr[index] = mark==0 ? x+y : mark==1 ? x-y : mark==2 ? x*y : parseInt(x/y);
+         index++; 
+         let markStr = mark==0 ? '+' : mark==1 ? '-' : mark==2 ? '*' : '/';
+         q.textContent = `${x} ${markStr} ${y} = `;
+      })
+   }
+
+   function submit(){
+      let score =0;
+      let index = 0;
+      answer.forEach(a => {
+         if(a.value!='' && a.value == arr[index]){
+            score+=25;
+         } else{
+            const quiz = document.querySelectorAll('.question');
+            quiz[index].style.textDecoration = 'line-through';
+         }
+         index++;
+      })
+      document.querySelector('.score').textContent = `${score}점`;
+   }
+
+   function reset(){
+      answer.forEach(a => {
+         a.value=null;
+      })
+      document.querySelector('.score').textContent = `0점`;
+      quiz.forEach(q => {
+         q.style.textDecoration = 'none';
+      })
+   }
+
+
+</script>
