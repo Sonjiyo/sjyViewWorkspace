@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      *{margin:0;padding:0;}
+      h1{background: #111; color:white; text-align: center;padding:20px 0;}
+      .search{background: #111; display: flex;justify-content: center; align-items: center;padding-bottom: 20px;}
+      #userId{border: none;padding:10px 20px;}
+      #userId:focus{outline: none;}
+      p{font-size: 50px;text-align: center;margin-top: 100px;font-weight: bold;}
+   </style>
+</head>
+<body>
+   <h1>유저 리스트</h1>
+   <div class="search">
+      <label for="userId"></label>
+      <input type="text" id="userId" placeholder="id 검색">
+   </div>
+   <p id="search-result">유저 검색 결과 없음</p>
+</body>
+</html>
+<script>
+   const userDataList = [
+      {id:123, name:'홍길동'},
+      {id:1021, name:'둘리'},
+      {id:6021, name:'또치'},
+      {id:12345, name:'짱구'}
+   ];
+   //'keyup' 이벤트 사용
+
+   const input = document.querySelector('#userId');
+   input.addEventListener('keyup', () =>{
+      let str = input.value;
+      let user = userDataList.find(user => user.id==str);
+      let result = document.querySelector('#search-result');
+      result.textContent = !user ? '유저 검색 결과 없음' : user.name;
+      // for(let i of userDataList){
+      //    if(str == i.id){
+      //       document.querySelector('#search-result').textContent = i.name;
+      //       break;
+      //    }else{
+      //       document.querySelector('#search-result').textContent = '유저 검색 결과 없음';
+      //    }
+      // }
+   })
+</script>
