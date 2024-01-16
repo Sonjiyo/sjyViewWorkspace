@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      *{margin:0; padding:0;}
+      body{
+         height: 100vh;
+         text-align: center;
+      }
+      h1{margin-top:50%;margin-bottom: 50px;}
+      button{margin-right: 20px;padding:5px 10px;}
+   </style>
+</head>
+<body>
+   <h1></h1>
+   <button>1초 뒤에 초기화 다시 시작</button>
+   <button>중지</button>
+</body>
+</html>
+<script>
+   let cnt = 0;
+   // const $h1 -> html 태그 요소와 일반 변수를 구분하기 위해 태그 객체는 $를 붙이기도 한다.
+   const h1 = document.querySelector('h1');
+   const btn = document.querySelectorAll('button');
+   let interval = setInterval(()=>{h1.textContent = cnt++},500);
+   
+
+   btn[0].addEventListener('click', ()=>{
+      clearInterval(interval);
+      // 버튼을 다시 클릭하지 못하게 만든다
+      // btn[0].removeEventListener('click', clickBtn) => 두번째 방법
+      setTimeout(()=>{
+         // clearInterval(interval); 무한 반복되지 않도록 하는 첫번째 방법
+         cnt = 0;
+         interval = setInterval(()=>{h1.textContent = cnt++},500);
+      },1000)
+   });
+
+   // let clickable= true; //flag 변수 => 3번째 방법
+
+   // const clickBtn = ()=>{
+   //    if(!clickable) return;
+   //    clearInterval(interval);
+   //    clickable = false;
+   //    setTimeout(()=>{
+   //       cnt = 0;
+   //       interval = setInterval(()=>{h1.textContent = cnt++},500);
+   //       clickable = true;
+   //    },1000)
+   // }
+   // btn[0].addEventListener('click', clickBtn);
+
+   btn[1].addEventListener('click', ()=>{
+      clearInterval(interval);
+   });
+   </script>

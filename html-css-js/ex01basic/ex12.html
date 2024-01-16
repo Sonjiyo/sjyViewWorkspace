@@ -27,21 +27,27 @@
    ];
    const userList = document.querySelector('.user_list');
 
-   userDataList.forEach(userData => {
-      userList.innerHTML += `<li>${userData.id} : ${userData.name}</li>`;
-   });
-
-
+   function updateList(){
+      let data ='';
+      userDataList.forEach(userData => {
+         data += `<li>${userData.id} : ${userData.name}</li>`;
+      });
+      userList.innerHTML = data;
+   }
+   updateList();
 
    const ascending = document.querySelector('.ascending');
    const descending = document.querySelector('.descending');
 
    ascending.addEventListener('click', ()=>{
-      let copy = [...userDataList];
-      copy.sort((a,b) => a.id>b.id ? -1 : 1);
-
-      copy.forEach(userData => {
-      userList.innerHTML += `<li>${userData.id} : ${userData.name}</li>`;
+      userDataList.sort((a,b) => a.id - b.id);
+      updateList();
    });
+   descending.addEventListener('click', ()=>{
+      userDataList.sort((a,b) => a.id>b.id ? -1 : 1);
+      updateList();
    })
+   
+
+
 </script>
