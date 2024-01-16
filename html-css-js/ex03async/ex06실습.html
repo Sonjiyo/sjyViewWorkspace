@@ -93,6 +93,7 @@
          background-color: #2d95eb;
          color: #fff;
       }
+      input{padding-left: 10px;}
    </style>
 </head>
 
@@ -105,7 +106,7 @@
 
       <div class="btn-group">
          <button class="btn" id="btnStart" onclick="rolling()">시작</button>
-         <button class="btn" id="btnStop" onclick="stopRolling()">정지</button>
+         <button class="btn" id="btnStop">정지</button>
       </div>
    </div>
 
@@ -125,7 +126,7 @@
 <script>
    const $userList = document.querySelector('#userList');
    const $selectList = document.querySelector('#selectedList');
-
+   let timeoutTimer = null;
    const nameList = ["김철수","김영희","박철수","박영희","이철수","이영희","최철수","최영희","바둑이","도라지","흰둥이","콩알이","나비","거북이"];
    let data = '';
    nameList.forEach(name => {
@@ -184,6 +185,27 @@
       $selectList.appendChild(select);
    }
 
+   function stopTimeOut(time) {
+      // 재귀함수는 나가는 조건이 있어야한다 
+      if (time >= 1000) {
+         let select = document.querySelector('.on');
+         select.classList.add('fix');
+         select.classList.remove('on');
+         $selectList.appendChild(select);
+         console.log('text');
+         return;
+      }
+      clearTimeout(timeoutTimer);
+      timeoutTimer = setTimeout(() => {
+         onTag();
+         // 자기자신의 함수를 초를 증가하면서 호출한다
+         stopTimeOut(time + 100);
+      }, time);
+}
 
+   document.querySelector('#btnStop').addEventListener('click', ()=>{
+      clearInterval(interval);
+      stopTimeOut(100);
+   })
 
 </script>
