@@ -70,14 +70,22 @@
       if(!!event.target.textContent) return;
       event.target.textContent = number++;
    })
-   $container.addEventListener('dragover', ()=>{event.preventDefault()});
+   $container.addEventListener('dragover', ()=>{
+      event.preventDefault();
+   });
+
    $container.addEventListener('dragstart', ()=>{
       event.target.classList.add('active');
       event.target.setAttribute("draggable","true");
+      // event.dataTransfer.setData('text', event.target.innerText);
    });
+
    $container.addEventListener('dragend', ()=>{event.target.classList.remove('active')});
 
    $trash.addEventListener('drop', e=>{
+      // let text = e.dataTransfer.getData('text');
+      // let box = $box.find(b=>b.innerText==text)
+      // box.remove();
       let box = document.querySelector('.active');
       if(e.target==$trash){
          box.remove();
