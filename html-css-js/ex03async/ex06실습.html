@@ -105,7 +105,7 @@
       </div>
 
       <div class="btn-group">
-         <button class="btn" id="btnStart" onclick="rolling()">시작</button>
+         <button class="btn" id="btnStart">시작</button>
          <button class="btn" id="btnStop">정지</button>
       </div>
    </div>
@@ -177,6 +177,7 @@
       cnt++;
    }
 
+   // 1단계
    function stopRolling(){
       clearInterval(interval);
       let select = document.querySelector('.on');
@@ -185,6 +186,7 @@
       $selectList.appendChild(select);
    }
 
+   // 2단계 (천천히 멈춤)
    function stopTimeOut(time) {
       // 재귀함수는 나가는 조건이 있어야한다 
       if (time >= 1000) {
@@ -192,20 +194,30 @@
          select.classList.add('fix');
          select.classList.remove('on');
          $selectList.appendChild(select);
-         console.log('text');
          return;
       }
-      clearTimeout(timeoutTimer);
+      clearTimeout(timeoutTimer); //여러번 누르는 것을 대비
       timeoutTimer = setTimeout(() => {
          onTag();
          // 자기자신의 함수를 초를 증가하면서 호출한다
          stopTimeOut(time + 100);
       }, time);
-}
+   }
+   
+   let isClick = false;
+
+   document.querySelector('#btnStart').addEventListener('click', ()=>{
+      if(isClick)return;
+      rolling();
+      isClick=true;
+   })
 
    document.querySelector('#btnStop').addEventListener('click', ()=>{
+      if(!isClick) return;
       clearInterval(interval);
       stopTimeOut(100);
+      isClick = false;
    })
+
 
 </script>
