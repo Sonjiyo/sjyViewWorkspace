@@ -75,6 +75,7 @@
    });
 
    $container.addEventListener('dragstart', ()=>{
+      if(!event.target.textContent) return;
       event.target.classList.add('active');
       event.target.setAttribute("draggable","true");
       // event.dataTransfer.setData('text', event.target.innerText);
