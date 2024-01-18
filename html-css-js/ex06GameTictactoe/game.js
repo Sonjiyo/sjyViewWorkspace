@@ -18,12 +18,11 @@ let cnt = 0;
 let turn = 1;
 function game(){
    $td.forEach(td=>{
-      if(cnt>=8){
-         document.querySelector('table').style.display='none';
-         document.querySelector('.off').innerHTML = `게임 오버<br>무승부입니다.`;
-         document.querySelector('.off').style.display='block';
-      }
       td.addEventListener('click', ()=>{
+         if(cnt>=8){
+            document.querySelector('.off').innerHTML = `게임 오버<br>무승부입니다.`;
+            document.querySelector('.off').style.display='flex';
+         }
          if(!!td.textContent) return;
          if(turn===1){
             td.classList.add('p1');
@@ -66,10 +65,7 @@ function win(){
    }
 }
 function winMsg(){
-   setTimeout(()=>{
-      document.querySelector('table').style.display='none';
-      let color = turn==2 ? 'pink' : 'blue';
-      document.querySelector('.off').innerHTML = `게임 오버<br><span class="${color}">${color}</span>가 이겼습니다.`;
-      document.querySelector('.off').style.display='block';
-   },200)
+   let color = turn==1 ? 'pink' : 'blue';
+   document.querySelector('.off').innerHTML = `게임 오버<br><span class="${color}">${color}</span>가 이겼습니다.`;
+   document.querySelector('.off').style.display='flex';
 }
