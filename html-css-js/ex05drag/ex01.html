@@ -86,8 +86,8 @@
       //dragover 할 수 있도록 기본 이벤트 막기
       e.preventDefault();
    })
-   list.addEventListener('drop', e=>{
-      e.target.appendChild(span);
-      e.target.appendChild(img);
+   list.addEventListener('drop', ()=>{
+      event.target.appendChild(span);
+      event.target.appendChild(img);
    })
 </script>

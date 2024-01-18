@@ -60,10 +60,10 @@
       e.preventDefault();
    })
 
-   document.querySelector('.zone2').addEventListener('drop', e=>{
+   list.addEventListener('drop', e=>{
       e.preventDefault();
       let num = e.dataTransfer.getData('num');
       // console.log(num);
-      document.querySelector('.zone2').appendChild(boxs.find(b=>b.innerText==num));
+      e.target.appendChild(boxs.find(b=>b.innerText==num));
    })
 </script>
