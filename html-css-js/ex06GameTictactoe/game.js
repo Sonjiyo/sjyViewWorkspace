@@ -1,5 +1,21 @@
 const $td = [...document.querySelectorAll('td')];
+const $reset = document.querySelector('#reset');
 let isWin = false;
+
+let cnt = 0;
+let turn = 1;
+$reset.addEventListener('click', ()=>{
+   document.querySelector('.off').style.display='none';
+   event.target.style.display='none';
+   $td.forEach(td=>{
+      td.classList.remove('p1');
+      td.classList.remove('p2');
+      td.textContent=null;
+   })
+   turn=1;
+   cnt=0;
+   isWin=false;
+})
 
 
 document.querySelector('#start').addEventListener('click', ()=>{
@@ -14,14 +30,13 @@ document.querySelector('#start').addEventListener('click', ()=>{
 // 0 3 6
 // 0 4 8
 // 2 4 6
-let cnt = 0;
-let turn = 1;
 function game(){
    $td.forEach(td=>{
       td.addEventListener('click', ()=>{
          if(cnt>=8){
             document.querySelector('.off').innerHTML = `게임 오버<br>무승부입니다.`;
             document.querySelector('.off').style.display='flex';
+            $reset.style.display='block';
          }
          if(!!td.textContent) return;
          if(turn===1){
@@ -68,4 +83,5 @@ function winMsg(){
    let color = turn==1 ? 'pink' : 'blue';
    document.querySelector('.off').innerHTML = `게임 오버<br><span class="${color}">${color}</span>가 이겼습니다.`;
    document.querySelector('.off').style.display='flex';
+   $reset.style.display='block';
 }
