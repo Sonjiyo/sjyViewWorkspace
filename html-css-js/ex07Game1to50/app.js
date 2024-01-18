@@ -10,26 +10,29 @@ class Game1To50{
       this.container = document.querySelector('.container');
       this.timer = document.querySelector('.timer');
       this.interval = null;
-      this.init();
-      this.gamePlay();
+      this.gameBtn.addEventListener('click', ()=>{
+         this.init();
+         this.gamePlay();
+      })
    }
    init(){
-      this.gameBtn.addEventListener('click', ()=>{
-         this.timeRecode();
-         this.gameBtn.style.display='none';
-         document.querySelector('.timer').style.display='block';
+      this.nodeList = [];
+      this.backList = [];
+      this.gameNum=1;
+      this.recode = {min:0, sec:0, milSec:0, cnt:0};
+      this.timeRecode();
+      this.gameBtn.style.display='none';
+      document.querySelector('.timer').style.display='block';
          
-         this.createNodeList();
+      this.createNodeList();
          
-         for(let i=1; i<=25; i++){
-            let box = document.createElement('div');
-            box.classList.add('box');
-            box.setAttribute("data-id", `${i}`);
-            box.textContent = this.nodeList[i+24];
-            this.backList.push(box);
-         }
-      })
-      
+      for(let i=1; i<=25; i++){
+         let box = document.createElement('div');
+         box.classList.add('box');
+         box.setAttribute("data-id", `${i}`);
+         box.textContent = this.nodeList[i+24];
+         this.backList.push(box);
+      }     
    }
    timeRecode(){
       this.interval = setInterval(() => {
@@ -95,10 +98,6 @@ class Game1To50{
             this.timer.style.display='none';
             this.gameBtn.textContent='다시 시작'
             this.gameBtn.style.display='block';
-            this.gameNum=1;
-            this.recode.milSec=0;
-            this.recode.sec=0;
-            this.recode.min=0;
          }
       })
    }
