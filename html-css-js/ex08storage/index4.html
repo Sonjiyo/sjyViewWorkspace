@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <form id="saveForm">
+      <input type="text">
+      <input type="submit" value="저장하기">
+   </form>
+   <br>
+   <form id="deleteForm">
+      <input type="text">
+      <input type="submit" value="삭제하기">
+   </form>
+   <hr>
+   <br>
+   <div class="save"></div>
+</body>
+</html>
+<script>
+   const saveForm = document.querySelector('#saveForm');
+   const saveInput = saveForm.querySelector('input');
+   const deleForm = document.querySelector('#deleteForm');
+   const deleInput = deleForm.querySelector('input');
+
+   const inputData = localStorage.getItem('data') ? [...JSON.parse(localStorage.getItem('data'))] : [];
+   
+   saveForm.addEventListener('submit', ()=>{
+      inputData.push(saveInput.value);
+      localStorage.setItem('data', JSON.stringify(inputData));
+   })
+   deleForm.addEventListener('submit', ()=>{
+      let index = inputData.lastIndexOf(deleInput.value);
+      inputData.splice(index,1);
+      localStorage.setItem('data', JSON.stringify(inputData));
+   })
+   
+   document.querySelector('.save').textContent = inputData.join(', ')
+   
+
+</script>

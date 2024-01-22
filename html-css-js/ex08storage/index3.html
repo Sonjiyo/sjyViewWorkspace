@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <form>
+      <input type="text">
+      <input type="submit" value="저장하기">
+   </form>
+   <div class="save"></div>
+</body>
+</html>
+<script>
+   document.querySelector(`input[type='submit']`).addEventListener('click' , ()=>{
+
+      //submit 요청값을 가지고 어디론가(서버로) 간다
+      // event.preventDefault();
+
+      let text = document.querySelector(`input[type='text']`).value;
+      localStorage.setItem('data', text);
+
+      // window.location.reload(); //페이지 새로고침
+   })
+   document.querySelector('.save').textContent = localStorage.getItem('data');
+
+   // const myCat = {
+   //    name:'복다주',
+   //    age : 12
+   // }
+
+   // const arr = [10,20,30,40];
+
+   // //객체를 String으로 바꾸는 방법
+
+   // let data = JSON.stringify(myCat);
+
+   // localStorage.setItem('cat', data);
+   // localStorage.setItem('arr', JSON.stringify(arr));
+
+   // document.write(localStorage.getItem('cat')+ '<br>');
+   // document.write(localStorage.getItem('arr')+ '<br>');
+   // let test = localStorage.getItem('arr');
+
+   // document.write(test[0]+ '<br>');
+   
+   // let savedObj = JSON.parse(localStorage.getItem('cat'));
+   // let savedArr = [...JSON.parse(localStorage.getItem('arr'))];
+   
+   // document.write(typeof savedObj+"<br>");
+   // document.write(typeof savedArr+"<br>");
+
+
+</script>

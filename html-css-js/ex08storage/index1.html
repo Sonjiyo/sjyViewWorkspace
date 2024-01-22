@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <!-- 
+      http : 정보통신 규약 response, request
+
+      클라이언트가 먼저 요청(request)을 보내면
+      서버가 그 요청에 응답(response)한다
+
+      http : stateless : 매 응답이 끝나면 접속 해제
+
+      서버를 저장하는 방법
+      쿠키 - 클라이언트에 저장하는 값 
+      세션 - 서버에 저장하는 값 : 로그인 성공 : 세션id 생성 세션 db저장 
+            => 클라이언트에게 세션 id값을 쿠키로 준다
+
+      쿠키 저장공간 4kb
+      키, 값, 도메인정보, 경로정보, 만료일자 등을 저장 
+      => 보안에 취약
+
+
+      브라우저 => 웹스토리지 : 모두 문자열로 저장
+      로컬스토리지 - 브라우저, 해당 도메인 안에 저장 : 영구적(삭제 전까지)
+      => 노션, 다크모드 ...
+      세션스토리지 - 매번 탭 (새로운 창을 열 때마다)리셋 된다.
+      => 비회원 장바구니, 입력 폼에 대한 정보
+
+      도메인 : 127.0.0.1 == localhost : 내 컴퓨터 도메인 == ip
+   -->
+</head>
+<body>
+   <a href="index2.html">페이지2로 이동</a>
+</body>
+</html>
+<script>
+                     //이름(key)  값(value)
+   localStorage.setItem("cat","나비");
+   sessionStorage.setItem("dog","멍멍이");
+</script>
