@@ -1,3 +1,5 @@
+// import Bullet from './Bullet.js';
+
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext('2d');
 // 정중앙에 위치시키기
@@ -9,19 +11,30 @@ let key = {
    ArrowDown: false
 }
 let imgReady = false;
-
 let playerImg = new Image();
 playerImg.src = './bug.png';
+
+let backReady = false;
+let backImg = new Image();
+backImg.src = './background1.png';
+
+let bulletList = [];
 
 function init() {
    playerImg.addEventListener("load", () => {
       imgReady = true;
    })
+   backImg.addEventListener('load', ()=>{
+      backReady = true;
+      ctx.drawImage(backImg, 0, 0, canvas.width, canvas.height);
+   })
    document.addEventListener("keydown", e => keyHandler(e, true));
    document.addEventListener("keyup", e => keyHandler(e, false));
+   createBullets(30);
 }
 
 function drawPlayer() {
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
    ctx.beginPath();
    //이미지객체 , 시작좌표x, y  이미지크기 가로   세로 
    //ctx.rect(player.x, player.y, player.size, player.size);
@@ -30,10 +43,18 @@ function drawPlayer() {
    ctx.closePath();
 }
 
-
 function keyHandler(e, value) {
    if (key[e.key] !== undefined) {
       key[e.key] = value;
+   }
+}
+
+function createBullets(size){
+   bulletList= [];
+   for(let i =0;i<size; i++){
+      let bullet = new Bullet();
+      bullet.init(player.x, player.y);
+      bulletList.push(bullet);
    }
 }
 
@@ -49,12 +70,33 @@ function movePlayer() {
    }
 }
 
-
 function render() {
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+   if (!backReady) return;
    if (!imgReady) return;
    drawPlayer();
-  // imgReady && drawPlayer();
+   movePlayer();
+   bulletList.forEach(bull => { bull.update(player.x, player.y) })
+
+   bulletList.forEach(bull => {
+                           //플레이어의 정중앙에 오게 세팅해주기
+      if (bull.isCollision(player.x + player.size / 2, player.y + player.size / 2, player.size / 2)) {
+         setTimeout(() => {
+            if (!isOver) gameOver();
+            isOver = true;
+            clearInterval(interval);
+         }, 200);
+      }
+
+   })
+   console.log("test = ", isOver);
+
+   bulletList.forEach(bull => bull.render(ctx));
+}
+
+function gameOver() {
+   alert("게임오버");
 }
 
 init();
-setInterval(render, 10)
+let interval = setInterval(render, 10)
