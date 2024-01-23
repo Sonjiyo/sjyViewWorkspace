@@ -65,13 +65,12 @@ class Bullet{
       let pdy = this.y - py;
       let pdc = pdx*pdx + pdy*pdy;
 
-      return Math.pow(size + this.radius) > pdc;
+      return Math.pow(size + this.radius, 2) > pdc;
       // if(Math.pow(size + this.radius) > pdc){
       //    console.log('충돌');
       //    return true;
       // } else{
       //    return false;
       // }
-
    }
 }

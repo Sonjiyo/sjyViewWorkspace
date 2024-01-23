@@ -2,6 +2,7 @@
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext('2d');
+const startBtn = document.querySelector('.startBtn');
 // 정중앙에 위치시키기
 let player = { x: canvas.width / 2 - 25, y: canvas.height / 2 - 25, size: 50, speed: 3 };
 let key = {
@@ -14,27 +15,27 @@ let imgReady = false;
 let playerImg = new Image();
 playerImg.src = './bug.png';
 
-let backReady = false;
 let backImg = new Image();
 backImg.src = './background1.png';
+let backX = 0;
 
 let bulletList = [];
+let isOver = false;
+
+let interval = null;
 
 function init() {
    playerImg.addEventListener("load", () => {
       imgReady = true;
    })
-   backImg.addEventListener('load', ()=>{
-      backReady = true;
-      ctx.drawImage(backImg, 0, 0, canvas.width, canvas.height);
-   })
+   startBtn.addEventListener('click', gameStart);
+   ctx.drawImage(backImg, backX, 0, canvas.width, canvas.height);
    document.addEventListener("keydown", e => keyHandler(e, true));
    document.addEventListener("keyup", e => keyHandler(e, false));
-   createBullets(30);
+   createBullets(10);
 }
 
 function drawPlayer() {
-   ctx.clearRect(0, 0, canvas.width, canvas.height);
    ctx.beginPath();
    //이미지객체 , 시작좌표x, y  이미지크기 가로   세로 
    //ctx.rect(player.x, player.y, player.size, player.size);
@@ -71,8 +72,14 @@ function movePlayer() {
 }
 
 function render() {
+   //배경까지 사라짐
    ctx.clearRect(0, 0, canvas.width, canvas.height);
-   if (!backReady) return;
+   backX+=1;
+   //다시 배경 입히기
+   ctx.drawImage(backImg, backX, 0, canvas.width, canvas.height);
+   //빈공간을 다시 배경으로 채워주기
+   ctx.drawImage(backImg, backX-canvas.width, 0, canvas.width, canvas.height);
+   if(backX >= canvas.width) backX = 0;
    if (!imgReady) return;
    drawPlayer();
    movePlayer();
@@ -87,16 +94,32 @@ function render() {
             clearInterval(interval);
          }, 200);
       }
-
    })
-   console.log("test = ", isOver);
-
+   // console.log("test = ", isOver);
+   
    bulletList.forEach(bull => bull.render(ctx));
 }
 
 function gameOver() {
-   alert("게임오버");
+   backX=0;
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+   document.querySelector('.startBtn').style.display='block';
+   ctx.drawImage(backImg, backX, 0, canvas.width, canvas.height);
 }
-
+function gameStart(){
+   isOver = false;
+   startBtn.style.display='none';
+   //플레이어 초기값
+   player.x = canvas.width / 2 - player.size/2;
+   player.y =canvas.height / 2 - player.size/2;
+   createBullets(10);
+   interval = setInterval(render, 10);
+}
+backImg.addEventListener("load", () => {
+   ctx.drawImage(backImg, backX, 0, canvas.width, canvas.height);
+})
 init();
-let interval = setInterval(render, 10)
+
+
+
+
